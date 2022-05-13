@@ -19,6 +19,8 @@ app = FastAPI(
 )
 
 # Create "infer" endpoint/path
+
+
 @app.post("/infer", tags=["ML Model Inference"], response_model=ResponseModel)
 def predict(x: RequestModel) -> ResponseModel:
     """Inference Function for getting output from Model
@@ -37,7 +39,9 @@ def predict(x: RequestModel) -> ResponseModel:
     A = np.loadtxt(MODEL_WEIGHTS_PATH, skiprows=0, delimiter=",")
     # calculate y=Ax
     y = np.dot(A, x_array.T).T.tolist()
-    return {"Y": y}
+    result = ResponseModel()
+    result.Y = y
+    return result
 
 
 # Run the API with uvicorn
