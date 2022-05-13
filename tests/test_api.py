@@ -1,6 +1,8 @@
+import pytest
 import requests
 
 
+@pytest.mark.skip
 def test_infer_route():
     sample_request = {"X": [[1, 2, 3], [4, 5, 6]]}
     expected_response = {"Y": [[2.03701, 2.345], [5.739376, 6.0338]]}
